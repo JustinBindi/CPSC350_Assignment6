@@ -7,27 +7,15 @@ using namespace std;
 using namespace std::chrono;
 
 BubbleSort::BubbleSort()
-{
-
-}
+{}
 
 BubbleSort::BubbleSort(double g)
-{
-
-}
-
-/*void BubbleSort::switchNumbersB(int num1, int num2)
-{
-    int temp = num1;
-    num1 = num2;
-    num2 = temp;
-}*/
+{}
 
 void BubbleSort::runBubbleSort(double array[], int n)
 {
   for (int i = 0; i < n-1; i++)
   {
-    // Last i elements are already in place
     for (int j = 0; j < n-i-1; j++)
     {
       if (array[j] > array[j+1])
@@ -38,29 +26,17 @@ void BubbleSort::runBubbleSort(double array[], int n)
   }
 }
 
-SelectionSort::SelectionSort()
-{
 
-}
+SelectionSort::SelectionSort()
+{}
 
 SelectionSort::SelectionSort(double g)
-{
-
-}
-
-/*void SelectionSort::switchNumbersS(int num1, int num2)
-{
-    int temp = num1;
-    num1 = num2;
-    num2 = temp;
-}*/
+{}
 
 void SelectionSort::runSelectionSort(double array[], int n)
 {
-  // One by one move boundary of unsorted subarray
   for (int i = 0; i < n-1; i++)
   {
-    // Find the minimum element in unsorted array
     int minIndex = i;
     for (int j = i+1; j < n; j++)
     {
@@ -69,22 +45,17 @@ void SelectionSort::runSelectionSort(double array[], int n)
         minIndex = j;
       }
     }
-
-    // Swap the found minimum element with the first element
     swap(array[minIndex], array[i]);
   }
 
 }
 
-InsertionSort::InsertionSort()
-{
 
-}
+InsertionSort::InsertionSort()
+{}
 
 InsertionSort::InsertionSort(double g)
-{
-
-}
+{}
 
 void InsertionSort::runInsertionSort(double array[], int n)
 {
@@ -93,9 +64,6 @@ void InsertionSort::runInsertionSort(double array[], int n)
       int key = array[i];
       int j = i - 1;
 
-      /* Move elements of array[0..i-1], that are
-      greater than key, to one position ahead
-      of their current position */
       while (j >= 0 && array[j] > key)
       {
           array[j + 1] = array[j];
@@ -105,33 +73,23 @@ void InsertionSort::runInsertionSort(double array[], int n)
     }
 }
 
-QuickSort::QuickSort()
-{
 
-}
+QuickSort::QuickSort()
+{}
 
 QuickSort::QuickSort(double g)
-{
+{}
 
-}
-
-/* This function takes last element as pivot, places
-   the pivot element at its correct position in sorted
-    array, and places all smaller (smaller than pivot)
-   to left of pivot and all greater elements to right
-   of pivot */
 int QuickSort::partition (double array[], int low, int high)
 {
-    int pivot = array[high];    // pivot
-    int i = (low - 1);  // Index of smaller element
+    int pivot = array[high];
+    int i = (low - 1);
 
     for (int j = low; j <= high- 1; j++)
     {
-        // If current element is smaller than or
-        // equal to pivot
         if (array[j] <= pivot)
         {
-            i++;    // increment index of smaller element
+            i++;
             swap(array[i], array[j]);
         }
     }
@@ -143,25 +101,21 @@ void QuickSort::runQuickSort(double array[], int low, int high)
 {
   if (low < high)
     {
-        /* pi is partitioning index, array[p] is now
-           at right place */
         int partitionIndex = partition(array, low, high);
-
-        // Separately sort elements before
-        // partition and after partition
         runQuickSort(array, low, partitionIndex - 1);
         runQuickSort(array, partitionIndex + 1, high);
     }
 }
 
+
 Simulator::Simulator()
 {
-
+  answer = "";
 }
 
-Simulator::Simulator(int b)
+Simulator::Simulator(string filename)
 {
-
+  answer = filename;
 }
 
 void Simulator::Run()
@@ -196,8 +150,6 @@ void Simulator::Run()
     array3[i] = array[i];
     array4[i] = array[i];
   }
-
-
 
   BubbleSort bubble;
   SelectionSort select;
@@ -254,6 +206,4 @@ void Simulator::Run()
   cout << "Time taken by function: "
            << duration.count() << " microseconds" << endl;
   cout << "" << endl;
-
-
 }

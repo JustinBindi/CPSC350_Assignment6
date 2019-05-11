@@ -8,7 +8,6 @@ class BubbleSort
     BubbleSort();
     BubbleSort(double g);
     void runBubbleSort(double array[], int n);
-    //void switchNumbersB(int num1, int num2);
 };
 
 class SelectionSort
@@ -41,9 +40,8 @@ class Simulator
 {
   public:
     Simulator();
-    Simulator(int b);
+    Simulator(string filename);
     void Run();
     string answer;
     int length;
-
 };
